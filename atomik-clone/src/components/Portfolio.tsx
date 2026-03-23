@@ -3,10 +3,11 @@
 import { CldVideoPlayer } from "next-cloudinary";
 
 const videos = [
-  { id: "sample_video_1", title: "Commercial Edit" },
-  { id: "sample_video_2", title: "Documentary Cut" },
-  { id: "sample_video_3", title: "Music Video Highlights" },
-  { id: "sample_video_4", title: "Social Media Reel" },
+  { id: "Concept_Explainer_kfml9n", title: "Concept Explainer" },
+  { id: "Edit_timeline_tgc1a5", title: "Edit Timeline" },
+  { id: "Personal_Experiment_g0mwwu", title: "Personal Experiment" },
+  { id: "Finance_Branding_vahalz", title: "Finance Branding" },
+  { id: "Brand_style_b7ikmi", title: "Brand Style Focus" },
 ];
 
 export function Portfolio() {
