@@ -3,12 +3,15 @@ import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { Portfolio } from "@/components/Portfolio";
 import { IndianPortfolio } from "@/components/IndianPortfolio";
+import { ScrollyHero } from "@/components/ScrollyHero";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col">
-      <Header />
-      <Hero />
+    <>
+      <ScrollyHero />
+      <main className="min-h-screen flex flex-col relative bg-background z-10">
+        <Header />
+        <Hero />
       <Marquee />
       <Portfolio />
       <IndianPortfolio />
@@ -50,5 +53,6 @@ export default function Home() {
         </div>
       </footer>
     </main>
+    </>
   );
 }
