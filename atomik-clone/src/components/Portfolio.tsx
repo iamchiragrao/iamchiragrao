@@ -1,13 +1,13 @@
 "use client";
 
-import { CldVideoPlayer } from "next-cloudinary";
+
 
 const videos = [
-  { id: "Concept_Explainer_kfml9n", title: "Concept Explainer" },
-  { id: "Edit_timeline_tgc1a5", title: "Edit Timeline" },
-  { id: "Personal_Experiment_g0mwwu", title: "Personal Experiment" },
-  { id: "Finance_Branding_vahalz", title: "Finance Branding" },
-  { id: "Brand_style_b7ikmi", title: "Brand Style Focus" },
+  { id: "Concept_Explainer_kfml9n", title: "Concept Explainer", type: "horizontal" },
+  { id: "Edit_timeline_tgc1a5", title: "Edit Timeline", type: "horizontal" },
+  { id: "Personal_Experiment_g0mwwu", title: "Personal Experiment", type: "vertical" },
+  { id: "Finance_Branding_vahalz", title: "Finance Branding", type: "horizontal" },
+  { id: "Brand_style_b7ikmi", title: "Brand Style", type: "vertical" },
 ];
 
 export function Portfolio() {
@@ -21,25 +21,30 @@ export function Portfolio() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          {videos.map((v, i) => (
-            <div key={i} className="group relative rounded-3xl overflow-hidden cursor-pointer bg-foreground/5 shadow-2xl aspect-video">
-              <CldVideoPlayer
-                width="1920"
-                height="1080"
-                src={v.id}
-                colors={{
-                  accent: "#d4b46e",
-                  base: "#050505",
-                  text: "#e5e5e0"
-                }}
-                fontFace="DM Sans"
-              />
-              <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full pointer-events-none">
-                <p className="text-white font-bold text-sm">{v.title}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
+          {videos.map((v, i) => {
+            const isVertical = v.type === "vertical";
+            return (
+              <div 
+                key={i} 
+                className={`group relative rounded-3xl overflow-hidden cursor-pointer bg-foreground/5 shadow-2xl ${
+                  isVertical ? "aspect-[9/16] md:row-span-2" : "aspect-video md:col-span-2 lg:col-span-1 lg:row-span-1"
+                }`}
+              >
+                <video
+                  src={`https://res.cloudinary.com/dwop0otlb/video/upload/q_auto,f_auto/${v.id}.mp4`}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full pointer-events-none z-10">
+                  <p className="text-white font-bold text-sm">{v.title}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

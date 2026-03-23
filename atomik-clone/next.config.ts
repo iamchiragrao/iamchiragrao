@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: 'export',
   images: { unoptimized: true },
-  basePath: '/iamchiragrao',
+  basePath: process.env.GITHUB_ACTIONS ? '/iamchiragrao' : '',
 };
 
 export default nextConfig;
