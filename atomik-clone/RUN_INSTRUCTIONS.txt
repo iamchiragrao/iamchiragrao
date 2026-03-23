@@ -1,0 +1,34 @@
+# Atomik Growth Clone - Setup & Run Instructions
+
+## 1. Installation
+Install all necessary dependencies:
+```bash
+npm install
+```
+
+## 2. Development
+Run the local development server:
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view the result.
+
+## 3. Production Build
+Create an optimized production build:
+```bash
+npm run build
+```
+
+## 4. Production Start
+Run the production server after building:
+```bash
+npm start
+```
+
+## 5. Project Dependencies
+Key libraries used in this project:
+- **framer-motion**: For smooth animations and transitions.
+- **lucide-react**: For high-quality icons.
+- **next-themes**: For dark/light mode management.
+- **clsx / tailwind-merge**: For dynamic Tailwind class management.
+- **tailwindcss**: v4 for modern styling.

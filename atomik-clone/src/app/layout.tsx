@@ -16,8 +16,8 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Atomik Growth | Defining New Media",
-  description: "Atomik Growth is a new media agency that helps creators and brands grow their audience and impact through strategic content and podcasting.",
+  title: "Chirag Rao | Video Editor Portfolio",
+  description: "Portfolio of Chirag Rao, a professional video editor creating high-impact visual stories.",
 };
 
 export default function RootLayout({

@@ -11,19 +11,19 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="serif text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-8">
-            Defining <span className="text-foreground/40 italic">New</span> Media
+          <h1 className="serif text-5xl md:text-7xl lg:text-9xl font-bold tracking-tight mb-8">
+            Engineering <br /><span className="text-foreground/40 italic">Visual</span> Engagement
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-foreground/60 leading-relaxed mb-12">
-            The modern engine for high-impact content. We partner with world-class creators and brands to dominate attention and drive growth.
+            The modern engine for high-impact video content. I partner with world-class creators and brands to dominate attention and drive growth through exceptional editing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="w-full sm:w-auto bg-accent text-background px-8 py-4 rounded-full text-lg font-bold hover:scale-105 transition-transform">
-              Book A Call
-            </button>
-            <button className="w-full sm:w-auto border border-foreground/10 px-8 py-4 rounded-full text-lg font-bold hover:bg-foreground/5 transition-colors">
-              Our Services
-            </button>
+            <a href="#portfolio" className="w-full sm:w-auto bg-accent text-background px-8 py-4 rounded-full text-lg font-bold hover:scale-105 transition-transform flex justify-center">
+              View Portfolio
+            </a>
+            <a href="#contact" className="w-full sm:w-auto border border-foreground/10 px-8 py-4 rounded-full text-lg font-bold hover:bg-foreground/5 transition-colors flex justify-center">
+              Contact Me
+            </a>
           </div>
         </motion.div>
       </div>

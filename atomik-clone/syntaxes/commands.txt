@@ -1,0 +1,19 @@
+# Next.js Commands & Syntaxes
+
+### Install Dependencies
+npm install
+
+### Run Local Development Server
+npm run dev
+
+### Create Production Build
+npm run build
+
+### Start Production Server
+npm start
+
+### Run Linter
+npm run lint
+
+### Deployment Note
+This project runs a GitHub Action (`.github/workflows/deploy.yml`) to automatically deploy the `out` directory to `gh-pages` whenever you push to the `main` branch. Ensure your `next.config.ts` has `output: 'export'` configured.
