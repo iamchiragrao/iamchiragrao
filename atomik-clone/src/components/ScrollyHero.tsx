@@ -58,8 +58,8 @@ export function ScrollyHero() {
 
       // ── Text slide animations ─────────────────────────────────────────
       const slideCount = TEXT_SLIDES.length;
-      const INITIAL_DELAY = 0.15; // Delay text appearance by 15% of the scroll timeline
-      const usableTimeline = 1.0 - INITIAL_DELAY; // The remaining 85% of the scroll
+      const INITIAL_DELAY = 0.075; // Half the delay (7.5%) to make the first name appear 2x faster
+      const usableTimeline = 1.0 - INITIAL_DELAY; // The remaining 92.5% of the scroll
       const sliceDuration = usableTimeline / slideCount; // Time allotted per slide
 
       textRefs.current.forEach((el, i) => {
@@ -98,15 +98,15 @@ export function ScrollyHero() {
 
       // ── Video scrub (Length: 1 unit total) ──────────────────────────
       // The video starts scrubbing from 0 seconds (the beginning).
-      // We use ease: "power2.out" meaning the first ~30% of scroll will fast-forward heavily 
-      // through the initial seconds of the video, slowing down as the text appears.
+      // We use ease: "power3.out" to exponentially fast-forward the first part of the video 
+      // over a very short scroll distance, accommodating the faster text arrival.
       const videoProxy = { time: 0 }; 
       tl.to(
         videoProxy,
         {
           time: duration, // Scrub all the way to the end of the video
           duration: 1, // Matches the master timeline length
-          ease: "power2.out", 
+          ease: "power3.out", 
           onUpdate: () => {
              // Update the actual video element whenever the proxy value changes
             if (video.readyState >= 2) {
