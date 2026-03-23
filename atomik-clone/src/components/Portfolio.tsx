@@ -1,6 +1,6 @@
 "use client";
 
-
+import { VideoStack } from "./VideoStack";
 
 const videos = [
   { id: "Concept_Explainer_kfml9n", title: "Concept Explainer", type: "horizontal" },
@@ -21,15 +21,18 @@ export function Portfolio() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
+        {/* Mobile Tilt Stack */}
+        <div className="block md:hidden mt-10">
+          <VideoStack videos={videos} />
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="hidden md:grid grid-cols-3 lg:grid-cols-5 gap-6 p-4 mt-8">
           {videos.map((v, i) => {
-            const isVertical = v.type === "vertical";
             return (
               <div 
                 key={i} 
-                className={`group relative rounded-3xl overflow-hidden cursor-pointer bg-foreground/5 shadow-2xl ${
-                  isVertical ? "aspect-[9/16] md:row-span-2" : "aspect-video md:col-span-2 lg:col-span-1 lg:row-span-1"
-                }`}
+                className="group relative rounded-3xl overflow-hidden cursor-pointer bg-foreground/5 shadow-2xl aspect-[9/16]"
               >
                 <video
                   src={`https://res.cloudinary.com/dwop0otlb/video/upload/q_auto,f_auto/${v.id}.mp4`}

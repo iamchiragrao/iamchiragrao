@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { Portfolio } from "@/components/Portfolio";
+import { IndianPortfolio } from "@/components/IndianPortfolio";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <Marquee />
       <Portfolio />
+      <IndianPortfolio />
       
       {/* Services Preview Section */}
       <section id="about" className="py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,9 +34,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="serif text-3xl font-bold mb-8">Chirag Rao</div>
           <p className="text-foreground/40 text-sm mb-8 italic">Professional Video Editor</p>
-          <div className="flex justify-center gap-8 mb-12">
-            {["Email", "LinkedIn", "Frame.io", "Twitter"].map((item) => (
-              <a key={item} href="#" className="text-sm font-medium hover:text-accent transition-colors">{item}</a>
+          <div className="flex justify-center gap-4 sm:gap-8 mb-12 flex-wrap px-4">
+            {[
+              { name: "Instagram", url: "https://www.instagram.com/iamchiragrao" },
+              { name: "LinkedIn", url: "https://www.linkedin.com/in/iamchiragrao" },
+              { name: "Frame.io", url: "https://next.frame.io/share/151464ed-d786-4aaa-b666-9ab7adc212f7/446f2cbe-0dbb-40f2-aab8-c1925542c8f4" },
+              { name: "Email", url: "mailto:hello@chiragrao.com" }
+            ].map((item) => (
+              <a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-accent transition-colors">{item.name}</a>
             ))}
           </div>
           <p className="text-foreground/20 text-xs uppercase tracking-widest font-bold">
