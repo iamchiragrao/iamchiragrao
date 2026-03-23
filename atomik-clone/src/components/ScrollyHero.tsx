@@ -151,7 +151,7 @@ export function ScrollyHero() {
         <div className="absolute top-0 left-0 w-full h-screen">
           <video
             ref={videoRef}
-            src="https://res.cloudinary.com/dwop0otlb/video/upload/q_auto,f_auto/Finance_Branding_vahalz.mp4"
+            src="https://res.cloudinary.com/dwop0otlb/video/upload/v1774290696/cinematic_bg_rnkvlf.mp4"
             className="scrolly-video w-full h-screen object-cover opacity-60 dark:opacity-50"
             muted
             playsInline
