@@ -19,13 +19,17 @@ jobs:
         with:
           node-version: "20.x"
           cache: "npm"
-          cache-dependency-path: package-lock.json
+          cache-dependency-path: atomik-clone/package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd atomik-clone
+          npm install
 
       - name: Build frontend
-        run: npm run build
+        run: |
+          cd atomik-clone
+          npm run build
         env:
           NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: dwop0otlb
 
@@ -33,6 +37,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          publish_dir: atomik-clone/out
           publish_branch: gh-pages
           force_orphan: true
