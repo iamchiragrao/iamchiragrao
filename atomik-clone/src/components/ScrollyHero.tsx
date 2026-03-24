@@ -10,14 +10,15 @@ if (typeof window !== "undefined") {
 }
 
 const TEXT_SLIDES = [
-  "Chirag Rao",
-  "High-Impact Editing",
-  "Visual Effects",
-  "Content Analyzer",
+  "i am\nChirag Rao",
+  "i craft\nhigh-impact edits",
+  "i engineer\nvisual effects",
+  "i decode\nmetrics",
 ];
 
 export function ScrollyHero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const textRefs = useRef<(HTMLDivElement | null)[]>([]);
   const gsapInitialized = useRef(false);
@@ -25,7 +26,8 @@ export function ScrollyHero() {
   useEffect(() => {
     const video = videoRef.current;
     const container = containerRef.current;
-    if (!video || !container) return;
+    const inner = innerRef.current;
+    if (!video || !container || !inner) return;
 
     // Function that sets up GSAP once we know the video duration
     const initGSAP = () => {
@@ -45,37 +47,98 @@ export function ScrollyHero() {
       // ── Master timeline scrubbed by scroll ───────────────────────────
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: container,
+          trigger: inner,
           start: "top top",
-          end: "bottom bottom",
-          scrub: 0.5, // 0.5s smoothing
+          end: "+=200%", // The section will pin for 200vh of scrolling
+          scrub: 0.5,    // 0.5s smoothing
           pin: true,
-          pinSpacing: false,
+          pinSpacing: true, // Crucial: pushes the next section down, effectively revealing it naturally after
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          onLeave: () => {
+             if (video && video.readyState >= 2) {
+               video.playbackRate = 2.5; // Speed up the end video part
+               video.play();
+             }
+          },
+          onEnterBack: () => {
+             if (video) {
+               video.pause();
+               video.playbackRate = 1.0; // Reset just in case
+             }
+          }
         },
       });
 
       // ── Text slide animations ─────────────────────────────────────────
       const slideCount = TEXT_SLIDES.length;
-      const INITIAL_DELAY = 0.075; // Half the delay (7.5%) to make the first name appear 2x faster
-      const usableTimeline = 1.0 - INITIAL_DELAY; // The remaining 92.5% of the scroll
-      const sliceDuration = usableTimeline / slideCount; // Time allotted per slide
+      
+      // We dedicate the first 33% of the scroll exclusively to scrubbing the video up to 5s.
+      // During this time, no text overlays are visible yet.
+      const videoScrubScrollDuration = 0.33; 
+      
+      const usableTimeline = 1.0 - videoScrubScrollDuration; 
+      // Calculate slices so that the final text's fade-in sequence ends exactly at 1.0 (100% of pinning timeline).
+      // Slide 0, 1, 2 take 1 slice each. Slide 3 takes 0.2 slices (fade-in only).
+      const sliceDuration = usableTimeline / (slideCount - 1 + 0.2); 
 
+      // ── Video scrub to 5 seconds ──────────────────────────
+      const videoProxy = { time: 0 }; 
+      const fastForwardDuration = Math.min(2, duration);
+      const fastForwardScroll = 0.05; // Force first 2 seconds to fly by in the first 5% of scroll
+      const pauseTime = Math.min(5, duration);
+
+      // Tween 1: First 2 seconds fast-forward
+      tl.to(
+        videoProxy,
+        {
+          time: fastForwardDuration,
+          duration: fastForwardScroll,
+          ease: "power2.inOut", 
+          onUpdate: () => {
+            if (video.readyState >= 2) {
+                video.currentTime = videoProxy.time;
+            }
+          },
+        },
+        0
+      );
+
+      // Tween 2: Remaining video up to 5th second over the rest of the dedicated scrub time
+      if (pauseTime > fastForwardDuration) {
+        tl.to(
+          videoProxy,
+          {
+            time: pauseTime,
+            // duration is the remainder of the 33% timeframe
+            duration: videoScrubScrollDuration - fastForwardScroll,
+            ease: "none", 
+            onUpdate: () => {
+              if (video.readyState >= 2) {
+                  video.currentTime = videoProxy.time;
+              }
+            },
+          },
+          fastForwardScroll
+        );
+      }
+
+      // ── Text slide animations ─────────────────────────────────────────
       textRefs.current.forEach((el, i) => {
         if (!el) return;
-        const start = INITIAL_DELAY + i * sliceDuration;
+        // Texts start appearing AFTER the video scrub timeframe
+        const start = videoScrubScrollDuration + i * sliceDuration;
 
-        // Fade in
+        // Fade in (land with a bang)
         tl.fromTo(
           el,
-          { autoAlpha: 0, scale: 0.92, y: 30 },
+          { autoAlpha: 0, scale: 2.5, y: 50 },
           {
             autoAlpha: 1,
             scale: 1,
             y: 0,
-            duration: sliceDuration * 0.2, // 20% of slice length to fade in
-            ease: "power2.out",
+            duration: sliceDuration * 0.2, // exactly 20% of a full slice
+            ease: "back.out(2)",
           },
           start
         );
@@ -88,7 +151,7 @@ export function ScrollyHero() {
               autoAlpha: 0,
               scale: 1.08,
               y: -20,
-              duration: sliceDuration * 0.2, // 20% of slice length to fade out
+              duration: sliceDuration * 0.2, // exactly 20% of a full slice
               ease: "power2.in",
             },
             start + sliceDuration * 0.8
@@ -96,26 +159,7 @@ export function ScrollyHero() {
         }
       });
 
-      // ── Video scrub (Length: 1 unit total) ──────────────────────────
-      // The video starts scrubbing from 0 seconds (the beginning).
-      // We use ease: "power3.out" to exponentially fast-forward the first part of the video 
-      // over a very short scroll distance, accommodating the faster text arrival.
-      const videoProxy = { time: 0 }; 
-      tl.to(
-        videoProxy,
-        {
-          time: duration, // Scrub all the way to the end of the video
-          duration: 1, // Matches the master timeline length
-          ease: "power3.out", 
-          onUpdate: () => {
-             // Update the actual video element whenever the proxy value changes
-            if (video.readyState >= 2) {
-                video.currentTime = videoProxy.time;
-            }
-          },
-        },
-        0 // Video tween starts at the absolute beginning of the master timeline (t=0)
-      );
+
 
       // Force ScrollTrigger to recalculate after setup
       ScrollTrigger.refresh();
@@ -143,11 +187,13 @@ export function ScrollyHero() {
     <section
       ref={containerRef}
       className="relative w-full bg-black"
-      style={{ height: "500vh" }}
     >
-      {/* This inner div is what GSAP will pin */}
-      <div className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center">
-        {/* Video background — explicit h-screen to avoid inheriting the 500vh trigger height */}
+      {/* This inner div is what GSAP will pin. The pin-spacer handles the padding. */}
+      <div 
+        ref={innerRef}
+        className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center"
+      >
+        {/* Video background */}
         <div className="absolute top-0 left-0 w-full h-screen">
           <video
             ref={videoRef}
@@ -170,13 +216,9 @@ export function ScrollyHero() {
               ref={(el) => {
                 textRefs.current[index] = el;
               }}
-              className={`absolute inset-0 flex opacity-0 invisible ${
-                index === 0 
-                  ? "justify-center items-end pb-[20vh] text-center md:justify-start md:items-center md:pb-0 md:pl-24 md:text-left" 
-                  : "justify-center items-end pb-[20vh] text-center md:items-center md:pb-0"
-              }`}
+              className="absolute inset-0 flex opacity-0 invisible justify-center items-end pb-[20vh] text-center md:justify-start md:items-center md:pb-0 md:pl-24 md:text-left"
             >
-              <h1 className="text-5xl md:text-8xl serif font-bold tracking-tight text-white drop-shadow-2xl">
+              <h1 className="text-5xl md:text-8xl serif font-bold tracking-tight text-white drop-shadow-2xl whitespace-pre-line leading-tight">
                 {text}
               </h1>
             </div>
