@@ -13,7 +13,6 @@ const TEXT_SLIDES = [
   "I am\nChirag Rao",
   "I craft\nhigh-impact edits",
   "I engineer\nvisual effects",
-  "I decode\nmetrics",
 ];
 
 export function ScrollyHero() {
