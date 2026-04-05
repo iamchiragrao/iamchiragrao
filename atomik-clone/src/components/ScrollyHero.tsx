@@ -11,9 +11,9 @@ if (typeof window !== "undefined") {
 
 const TEXT_SLIDES = [
   "I am\nChirag Rao",
-  "i craft\nhigh-impact edits",
-  "i engineer\nvisual effects",
-  "i decode\nmetrics",
+  "I craft\nhigh-impact edits",
+  "I engineer\nvisual effects",
+  "I decode\nmetrics",
 ];
 
 export function ScrollyHero() {
