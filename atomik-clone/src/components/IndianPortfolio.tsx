@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const indianProjects = [
-  { videoId: "Finance_Branding_vahalz", text: "Chirag completely transformed our brand's visual identity. The edits were sharp, modern, and exactly what we needed to capture the Indian market." },
+  { videoId: "Finance_Branding_vahalz", text: "Chirag completely transformed our brand's visual identity. The edits were sharp, modern, and exactly what we needed" },
   { videoId: "Edit_timeline_tgc1a5", text: "An absolute professional. The pacing and storytelling in our promotional reels improved our engagement by over 300%." },
-  { videoId: "Brand_style_b7ikmi", text: "We needed someone who understood the nuances of tech communication. Chirag nailed every single video snippet we asked for." },
-  { videoId: "Concept_Explainer_kfml9n", text: "Flawless execution. The concept explainers were delivered perfectly on time and looked incredibly premium." },
+  { videoId: "Brand_style_b7ikmi", text: "We needed someone who understood the nuances of tech communication. Chirag nailed every video snippet we asked for." },
+  { videoId: "Concept_Explainer_kfml9n", text: "Flawless execution. The concept explainers were delivered perfectly and looked premium." },
 ];
 
 export function IndianPortfolio() {
@@ -25,7 +25,7 @@ export function IndianPortfolio() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {indianProjects.map((client, i) => (
-            <motion.div 
+            <motion.div
               key={client.videoId}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
