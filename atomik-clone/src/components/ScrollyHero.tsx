@@ -10,7 +10,7 @@ if (typeof window !== "undefined") {
 }
 
 const TEXT_SLIDES = [
-  "i am\nChirag Rao",
+  "I am\nChirag Rao",
   "i craft\nhigh-impact edits",
   "i engineer\nvisual effects",
   "i decode\nmetrics",
@@ -32,10 +32,10 @@ export function ScrollyHero() {
     // Function that sets up GSAP once we know the video duration
     const initGSAP = () => {
       if (gsapInitialized.current) return;
-      
+
       const duration = video.duration;
       if (!duration || !isFinite(duration) || duration <= 0) return;
-      
+
       gsapInitialized.current = true;
 
       // Set initial text states via GSAP (visibility:hidden + opacity:0)
@@ -56,34 +56,34 @@ export function ScrollyHero() {
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onLeave: () => {
-             if (video && video.readyState >= 2) {
-               video.playbackRate = 2.5; // Speed up the end video part
-               video.play();
-             }
+            if (video && video.readyState >= 2) {
+              video.playbackRate = 2.5; // Speed up the end video part
+              video.play();
+            }
           },
           onEnterBack: () => {
-             if (video) {
-               video.pause();
-               video.playbackRate = 1.0; // Reset just in case
-             }
+            if (video) {
+              video.pause();
+              video.playbackRate = 1.0; // Reset just in case
+            }
           }
         },
       });
 
       // ── Text slide animations ─────────────────────────────────────────
       const slideCount = TEXT_SLIDES.length;
-      
+
       // We dedicate the first 33% of the scroll exclusively to scrubbing the video up to 5s.
       // During this time, no text overlays are visible yet.
-      const videoScrubScrollDuration = 0.33; 
-      
-      const usableTimeline = 1.0 - videoScrubScrollDuration; 
+      const videoScrubScrollDuration = 0.33;
+
+      const usableTimeline = 1.0 - videoScrubScrollDuration;
       // Calculate slices so that the final text's fade-in sequence ends exactly at 1.0 (100% of pinning timeline).
       // Slide 0, 1, 2 take 1 slice each. Slide 3 takes 0.2 slices (fade-in only).
-      const sliceDuration = usableTimeline / (slideCount - 1 + 0.2); 
+      const sliceDuration = usableTimeline / (slideCount - 1 + 0.2);
 
       // ── Video scrub to 5 seconds ──────────────────────────
-      const videoProxy = { time: 0 }; 
+      const videoProxy = { time: 0 };
       const fastForwardDuration = Math.min(2, duration);
       const fastForwardScroll = 0.05; // Force first 2 seconds to fly by in the first 5% of scroll
       const pauseTime = Math.min(5, duration);
@@ -94,10 +94,10 @@ export function ScrollyHero() {
         {
           time: fastForwardDuration,
           duration: fastForwardScroll,
-          ease: "power2.inOut", 
+          ease: "power2.inOut",
           onUpdate: () => {
             if (video.readyState >= 2) {
-                video.currentTime = videoProxy.time;
+              video.currentTime = videoProxy.time;
             }
           },
         },
@@ -112,10 +112,10 @@ export function ScrollyHero() {
             time: pauseTime,
             // duration is the remainder of the 33% timeframe
             duration: videoScrubScrollDuration - fastForwardScroll,
-            ease: "none", 
+            ease: "none",
             onUpdate: () => {
               if (video.readyState >= 2) {
-                  video.currentTime = videoProxy.time;
+                video.currentTime = videoProxy.time;
               }
             },
           },
@@ -175,7 +175,7 @@ export function ScrollyHero() {
     return () => {
       video.removeEventListener("loadedmetadata", initGSAP);
       video.removeEventListener("canplay", initGSAP);
-      
+
       // Kill all ScrollTrigger instances for this container
       ScrollTrigger.getAll().forEach((st) => st.kill());
 
@@ -189,7 +189,7 @@ export function ScrollyHero() {
       className="relative w-full bg-black"
     >
       {/* This inner div is what GSAP will pin. The pin-spacer handles the padding. */}
-      <div 
+      <div
         ref={innerRef}
         className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center"
       >
