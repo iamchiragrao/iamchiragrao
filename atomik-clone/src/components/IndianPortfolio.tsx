@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const indianProjects = [
   { videoId: "Finance_Branding_vahalz", text: "Chirag completely transformed our brand's visual identity. The edits were sharp, modern, and exactly what we needed" },
   { videoId: "Edit_timeline_tgc1a5", text: "An absolute professional edit. The pacing and storytelling in this reel improved our engagement by over 300%." },
-  { videoId: "Brand_style_b7ikmi", text: "We needed someone who understood the nuances of tech communication. Chirag nailed every video snippet we asked for." },
+  { videoId: "Brand_style_b7ikmi", text: "We needed someone who understood the nuances of tech and finance communication. Chirag nailed every video snippet we asked for." },
   { videoId: "Concept_Explainer_kfml9n", text: "Flawless execution. The concept explainers were delivered perfectly and looked premium." },
 ];
 
