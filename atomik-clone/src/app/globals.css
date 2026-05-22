@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf7;
-  --foreground: #1c1917;
-  --accent: #1c1917;
+  --background: #000000;
+  --foreground: #ffffff;
+  --accent: #7f00ff;
 }
 
 [data-theme='dark'] {
-  --background: #050505;
-  --foreground: #e5e5e0;
-  --accent: #d4b46e;
+  --background: #000000;
+  --foreground: #ffffff;
+  --accent: #7f00ff;
 }
 
 @theme {
