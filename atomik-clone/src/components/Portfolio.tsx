@@ -12,10 +12,10 @@ const videos = [
 
 export function Portfolio() {
   return (
-    <section id="portfolio" className="py-32 bg-foreground/2">
+    <section id="portfolio" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(180deg, rgba(108,59,170,0.06) 0%, transparent 40%, transparent 60%, rgba(108,59,170,0.06) 100%)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <h2 className="serif text-5xl md:text-6xl font-bold mb-6">Selected <span className="text-accent italic">Works</span></h2>
+          <h2 className="heading text-5xl md:text-6xl font-bold mb-6">Selected <span className="text-accent italic">Works</span></h2>
           <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-medium">
             A showcase of my recent video editing projects. High-impact visuals tailored for optimal engagement.
           </p>

@@ -19,7 +19,7 @@ export function PageTemplate({ title, subtitle, children }: PageTemplateProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="serif text-5xl md:text-7xl font-bold mb-6">{title}</h1>
+          <h1 className="heading text-5xl md:text-7xl font-bold mb-6">{title}</h1>
           <p className="text-xl text-foreground/60 max-w-2xl mx-auto">{subtitle}</p>
         </motion.div>
       </section>

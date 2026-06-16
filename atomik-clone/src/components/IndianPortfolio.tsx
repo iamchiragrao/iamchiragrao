@@ -11,12 +11,12 @@ const indianProjects = [
 
 export function IndianPortfolio() {
   return (
-    <section id="indian-portfolio" className="py-24 bg-background overflow-hidden relative border-t border-foreground/10">
+    <section id="indian-portfolio" className="py-24 overflow-hidden relative border-t border-foreground/10" style={{ background: "linear-gradient(180deg, transparent 0%, rgba(108,59,170,0.08) 30%, rgba(108,59,170,0.08) 70%, transparent 100%)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
-          <p className="text-xs font-sans uppercase tracking-[0.3em] mb-4 text-accent font-bold">Client Success</p>
-          <h2 className="serif text-4xl md:text-6xl font-bold mb-6 text-foreground">
-            Trusted by <span className="text-foreground/40 italic">Indian</span> Brands
+          <p className="text-xs font-mono uppercase tracking-[0.3em] mb-4 text-accent font-bold">Client Success</p>
+          <h2 className="heading text-4xl md:text-6xl font-bold mb-6 text-foreground">
+            Trusted <span className="text-accent italic">across the country</span>
           </h2>
           <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-medium">
             Partnering with top creators and businesses across the country.

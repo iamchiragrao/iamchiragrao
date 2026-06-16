@@ -23,7 +23,7 @@ export function Marquee() {
         <div className="flex animate-marquee whitespace-nowrap gap-12 sm:gap-24 py-4 items-center">
           {[...skills, ...skills, ...skills].map((skill, i) => (
             <div key={i} className="flex items-center gap-12 sm:gap-24">
-              <span className="serif text-4xl font-bold text-foreground/40 italic">{skill}</span>
+              <span className="heading text-4xl font-bold text-foreground/40 italic">{skill}</span>
               <span className="text-accent text-2xl font-bold">•</span>
             </div>
           ))}

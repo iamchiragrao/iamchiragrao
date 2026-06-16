@@ -15,73 +15,103 @@ const services = [
 export function Header() {
   const [isServicesOpen, setIsServicesOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [scrollProgress, setScrollProgress] = React.useState(0);
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0) {
+        setScrollProgress((scrollTop / docHeight) * 100);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 pt-8 px-8 md:px-12 flex justify-between items-center transition-all duration-300 pointer-events-none">
-        <div className="shrink-0 flex items-center gap-4 pointer-events-auto">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative w-8 h-8 flex items-center justify-center bg-accent/20 rounded-full text-accent">
-              <Video className="w-4 h-4 animate-pulse" />
-            </div>
-            <span className="serif text-2xl font-bold tracking-tight text-foreground">Chirag Rao</span>
-          </Link>
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none">
+        {/* Scroll Progress Bar */}
+        <div className="w-full h-[3px] bg-transparent pointer-events-none">
+          <div
+            className="h-full"
+            style={{
+              width: `${scrollProgress}%`,
+              background: "linear-gradient(90deg, #6c3baa 0%, #8b5cc6 50%, #6c3baa 100%)",
+              boxShadow: "0 0 8px rgba(108, 59, 170, 0.6)",
+              transition: "width 50ms linear",
+            }}
+          />
         </div>
 
-        <nav className="hidden md:flex gap-6 items-center bg-foreground/5 backdrop-blur-md px-6 py-2.5 rounded-full shadow-lg border border-foreground/10 transition-all duration-500 pointer-events-auto">
-          <div 
-            className="relative group"
-            onMouseEnter={() => setIsServicesOpen(true)}
-            onMouseLeave={() => setIsServicesOpen(false)}
-          >
-            <button className="flex items-center gap-1.5 py-2 text-sm font-medium hover:text-accent transition-colors">
-              Services <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
-            </button>
-            <AnimatePresence>
-              {isServicesOpen && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute left-0 mt-0 w-56 bg-background border border-foreground/10 rounded-xl shadow-xl overflow-hidden backdrop-blur-xl"
-                >
-                  <div className="py-2">
-                    {services.map((service) => (
-                      <Link
-                        key={service.name}
-                        href={service.href}
-                        className="block px-4 py-2.5 text-sm hover:bg-foreground/5 transition-colors"
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+        {/* Header Content */}
+        <div className="pt-6 px-8 md:px-12 flex justify-between items-center">
+          <div className="shrink-0 flex items-center gap-4 pointer-events-auto">
+            <Link href="/" className="flex items-center gap-2">
+              <div className="relative w-8 h-8 flex items-center justify-center bg-accent/20 rounded-full text-accent">
+                <Video className="w-4 h-4 animate-pulse" />
+              </div>
+              <span className="heading text-2xl font-bold tracking-tight text-foreground">Chirag Rao</span>
+            </Link>
           </div>
-          <span className="w-px h-3 bg-foreground/20"></span>
-          <Link href="#portfolio" className="text-sm font-medium hover:text-accent transition-colors">Portfolio</Link>
-          <span className="w-px h-3 bg-foreground/20"></span>
-          <Link href="#about" className="text-sm font-medium hover:text-accent transition-colors">About</Link>
-          <span className="w-px h-3 bg-foreground/20"></span>
-          <Link href="#contact" className="text-sm font-medium hover:text-accent transition-colors">Contact</Link>
-        </nav>
 
-        <div className="flex items-center gap-4 pointer-events-auto">
-          <ThemeToggle />
-          <Link 
-            href="#contact" 
-            className="hidden sm:block bg-accent text-background px-6 py-2.5 rounded-full text-sm font-bold hover:scale-105 transition-transform"
-          >
-            Hire Me
-          </Link>
-          <button 
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X /> : <Menu />}
-          </button>
+          <nav className="hidden md:flex gap-6 items-center bg-foreground/5 backdrop-blur-md px-6 py-2.5 rounded-full shadow-lg border border-foreground/10 transition-all duration-500 pointer-events-auto">
+            <div 
+              className="relative group"
+              onMouseEnter={() => setIsServicesOpen(true)}
+              onMouseLeave={() => setIsServicesOpen(false)}
+            >
+              <button className="flex items-center gap-1.5 py-2 text-sm font-medium hover:text-accent transition-colors">
+                Services <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
+              </button>
+              <AnimatePresence>
+                {isServicesOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute left-0 mt-0 w-56 bg-background border border-foreground/10 rounded-xl shadow-xl overflow-hidden backdrop-blur-xl"
+                  >
+                    <div className="py-2">
+                      {services.map((service) => (
+                        <Link
+                          key={service.name}
+                          href={service.href}
+                          className="block px-4 py-2.5 text-sm hover:bg-foreground/5 transition-colors"
+                        >
+                          {service.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+            <span className="w-px h-3 bg-foreground/20"></span>
+            <Link href="#portfolio" className="text-sm font-medium hover:text-accent transition-colors">Portfolio</Link>
+            <span className="w-px h-3 bg-foreground/20"></span>
+            <Link href="#about" className="text-sm font-medium hover:text-accent transition-colors">About</Link>
+            <span className="w-px h-3 bg-foreground/20"></span>
+            <Link href="#contact" className="text-sm font-medium hover:text-accent transition-colors">Contact</Link>
+          </nav>
+
+          <div className="flex items-center gap-4 pointer-events-auto">
+            <ThemeToggle />
+            <Link 
+              href="#contact" 
+              className="hidden sm:block bg-accent text-white px-6 py-2.5 rounded-full text-sm font-bold hover:scale-105 transition-transform"
+            >
+              Hire Me
+            </Link>
+            <button 
+              className="md:hidden p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -113,7 +143,7 @@ export function Header() {
               <Link href="#contact" className="block px-2 py-2 text-lg font-medium" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
               <Link 
                 href="#contact" 
-                className="block w-full text-center bg-accent text-background px-6 py-4 rounded-xl text-lg font-bold"
+                className="block w-full text-center bg-accent text-white px-6 py-4 rounded-xl text-lg font-bold"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Hire Me

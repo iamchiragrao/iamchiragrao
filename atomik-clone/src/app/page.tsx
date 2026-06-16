@@ -1,5 +1,4 @@
 import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { Portfolio } from "@/components/Portfolio";
 import { IndianPortfolio } from "@/components/IndianPortfolio";
@@ -11,7 +10,6 @@ export default function Home() {
       <ScrollyHero />
       <main className="min-h-screen flex flex-col relative bg-background z-10">
         <Header />
-        <Hero />
       <Marquee />
       <Portfolio />
       <IndianPortfolio />
@@ -25,7 +23,7 @@ export default function Home() {
             { title: "Motion Graphics", desc: "Custom animations, kinetic typography, and visual effects to elevate your brand." },
           ].map((service) => (
             <div key={service.title} className="p-8 rounded-3xl border border-foreground/10 hover:border-accent transition-colors group cursor-default">
-              <h3 className="serif text-3xl font-bold mb-4 group-hover:text-accent transition-colors">{service.title}</h3>
+              <h3 className="heading text-3xl font-bold mb-4 group-hover:text-accent transition-colors">{service.title}</h3>
               <p className="text-foreground/60 leading-relaxed font-medium">{service.desc}</p>
             </div>
           ))}
@@ -35,7 +33,7 @@ export default function Home() {
       {/* Footer */}
       <footer id="contact" className="mt-auto py-20 border-t border-foreground/5 bg-foreground/2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="serif text-3xl font-bold mb-8">Chirag Rao</div>
+          <div className="heading text-3xl font-bold mb-8">Chirag Rao</div>
           <p className="text-foreground/40 text-sm mb-8 italic">Professional Video Editor</p>
           <div className="flex justify-center gap-4 sm:gap-8 mb-12 flex-wrap px-4">
             {[

@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { DM_Sans, Cormorant_Garamond } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { CursorFollower } from "@/components/CursorFollower";
+import { FloatingIcons } from "@/components/FloatingIcons";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -28,11 +30,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans">
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem>
+          <CursorFollower />
+          <FloatingIcons />
           {children}
         </ThemeProvider>
       </body>

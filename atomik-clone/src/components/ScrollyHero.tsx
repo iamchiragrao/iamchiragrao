@@ -217,7 +217,7 @@ export function ScrollyHero() {
               }}
               className="absolute inset-0 flex opacity-0 invisible justify-center items-end pb-[20vh] text-center md:justify-start md:items-center md:pb-0 md:pl-24 md:text-left"
             >
-              <h1 className="text-5xl md:text-8xl serif font-bold tracking-tight text-white drop-shadow-2xl whitespace-pre-line leading-tight">
+              <h1 className="text-5xl md:text-8xl heading font-bold tracking-tight text-white drop-shadow-2xl whitespace-pre-line leading-tight">
                 {text}
               </h1>
             </div>
