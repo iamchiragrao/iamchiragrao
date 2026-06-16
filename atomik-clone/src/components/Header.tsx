@@ -72,7 +72,7 @@ export function Header() {
         </div>
 
         {/* Header Content */}
-        <div className="pt-6 px-8 md:px-12 flex justify-end items-center">
+        <div className="pt-6 px-8 md:px-12 flex justify-center items-center relative">
           {/* Logo removed as requested */}
 
           <nav className="hidden md:flex gap-6 items-center bg-foreground/5 backdrop-blur-md px-6 py-2.5 rounded-full shadow-lg border border-foreground/10 transition-all duration-500 pointer-events-auto">
@@ -115,7 +115,7 @@ export function Header() {
             <Link href="#contact" className="text-sm font-medium hover:text-accent transition-colors">Contact</Link>
           </nav>
 
-          <div className="flex items-center gap-4 pointer-events-auto">
+          <div className="absolute right-8 md:right-12 flex items-center gap-4 pointer-events-auto">
             <Link 
               href="#contact" 
               className="hidden sm:block bg-accent text-white px-6 py-2.5 rounded-full text-sm font-bold hover:scale-105 transition-transform"
