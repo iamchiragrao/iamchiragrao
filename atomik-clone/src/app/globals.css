@@ -38,8 +38,14 @@
   --color-surface-2: var(--surface-2);
   --color-border-token: var(--border-token);
   --font-sans: var(--font-inter);
-  --font-heading: var(--font-inter);
+  --font-heading: var(--font-playfair);
   --font-mono: var(--font-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  font-size: 14px; /* Scaled down base font size */
 }
 
 body {
@@ -69,14 +75,20 @@ body::before {
   z-index: 0;
 }
 
-/* Display headings — Inter at 500 weight per Nexus spec */
+/* Display headings — Playfair Display serif */
 h1, h2, h3, h4, h5, h6, .heading {
-  font-family: var(--font-inter);
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  font-family: var(--font-playfair);
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
-/* Labels and technical metadata — JetBrains Mono per Nexus spec */
+/* Body emphasis — Inter bold */
+strong, b, .bold-text {
+  font-family: var(--font-inter);
+  font-weight: 700;
+}
+
+/* Labels and technical metadata — JetBrains Mono */
 .label, .mono {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -118,6 +130,20 @@ a, button, input, textarea, select, [role="button"] {
   .glass {
     @apply backdrop-blur-md bg-background/70 border-b border-foreground/10;
   }
+}
+
+/* Portfolio video carousel */
+@keyframes portfolio-slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.portfolio-carousel {
+  animation: portfolio-slide 40s linear infinite;
+}
+
+.portfolio-carousel.paused {
+  animation-play-state: paused;
 }
 
 @keyframes marquee {

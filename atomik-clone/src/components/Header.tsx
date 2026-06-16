@@ -15,47 +15,65 @@ const services = [
 export function Header() {
   const [isServicesOpen, setIsServicesOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const [scrollProgress, setScrollProgress] = React.useState(0);
+  const progressRef = React.useRef<HTMLDivElement>(null);
+  const rafId = React.useRef<number>(0);
 
   React.useEffect(() => {
-    const onScroll = () => {
+    const bar = progressRef.current;
+    if (!bar) return;
+
+    let currentWidth = 0;
+    let targetWidth = 0;
+
+    const updateTarget = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (docHeight > 0) {
-        setScrollProgress((scrollTop / docHeight) * 100);
-      }
+      targetWidth = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+
+    const animate = () => {
+      // Lerp for buttery smooth movement
+      currentWidth += (targetWidth - currentWidth) * 0.08;
+
+      // Snap if close enough to avoid infinite micro-updates
+      if (Math.abs(targetWidth - currentWidth) < 0.1) {
+        currentWidth = targetWidth;
+      }
+
+      bar.style.transform = `scaleX(${currentWidth / 100})`;
+      rafId.current = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("scroll", updateTarget, { passive: true });
+    updateTarget();
+    rafId.current = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("scroll", updateTarget);
+      cancelAnimationFrame(rafId.current);
+    };
   }, []);
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none">
-        {/* Scroll Progress Bar */}
+        {/* Scroll Progress Bar — uses scaleX transform for GPU-accelerated smoothness */}
         <div className="w-full h-[3px] bg-transparent pointer-events-none">
           <div
-            className="h-full"
+            ref={progressRef}
+            className="h-full origin-left"
             style={{
-              width: `${scrollProgress}%`,
+              transform: "scaleX(0)",
               background: "linear-gradient(90deg, #6c3baa 0%, #8b5cc6 50%, #6c3baa 100%)",
               boxShadow: "0 0 8px rgba(108, 59, 170, 0.6)",
-              transition: "width 50ms linear",
+              willChange: "transform",
             }}
           />
         </div>
 
         {/* Header Content */}
-        <div className="pt-6 px-8 md:px-12 flex justify-between items-center">
-          <div className="shrink-0 flex items-center gap-4 pointer-events-auto">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="relative w-8 h-8 flex items-center justify-center bg-accent/20 rounded-full text-accent">
-                <Video className="w-4 h-4 animate-pulse" />
-              </div>
-              <span className="heading text-2xl font-bold tracking-tight text-foreground">Chirag Rao</span>
-            </Link>
-          </div>
+        <div className="pt-6 px-8 md:px-12 flex justify-end items-center">
+          {/* Logo removed as requested */}
 
           <nav className="hidden md:flex gap-6 items-center bg-foreground/5 backdrop-blur-md px-6 py-2.5 rounded-full shadow-lg border border-foreground/10 transition-all duration-500 pointer-events-auto">
             <div 
@@ -98,7 +116,6 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-4 pointer-events-auto">
-            <ThemeToggle />
             <Link 
               href="#contact" 
               className="hidden sm:block bg-accent text-white px-6 py-2.5 rounded-full text-sm font-bold hover:scale-105 transition-transform"
