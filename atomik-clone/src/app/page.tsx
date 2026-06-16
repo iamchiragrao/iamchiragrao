@@ -34,7 +34,7 @@ export default function Home() {
       <footer id="contact" className="mt-auto py-20 border-t border-foreground/5 bg-foreground/2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="heading text-3xl font-bold mb-8">Chirag Rao</div>
-          <p className="text-foreground/40 text-sm mb-8 italic">Professional Video Editor</p>
+          <p className="text-foreground/40 text-sm mb-8 italic">Motion Designer/ Video editor</p>
           <div className="flex justify-center gap-4 sm:gap-8 mb-12 flex-wrap px-4">
             {[
               { name: "Instagram", url: "https://www.instagram.com/iamchiragrao" },

@@ -26,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Chirag Rao | Video Editor Portfolio",
-  description: "Portfolio of Chirag Rao, a professional video editor creating high-impact visual stories.",
+  description: "Portfolio of Chirag Rao, a motion designer and video editor creating high-impact visual stories.",
 };
 
 export default function RootLayout({
