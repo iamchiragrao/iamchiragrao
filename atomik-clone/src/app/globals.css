@@ -139,7 +139,7 @@ a, button, input, textarea, select, [role="button"] {
 }
 
 .portfolio-carousel {
-  animation: portfolio-slide 40s linear infinite;
+  animation: portfolio-slide 25s linear infinite;
 }
 
 .portfolio-carousel.paused {

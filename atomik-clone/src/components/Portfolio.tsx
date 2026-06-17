@@ -12,6 +12,9 @@ const videos = [
   { id: "Personal_Experiment_g0mwwu", title: "Personal Experiment", type: "vertical" },
   { id: "Finance_Branding_vahalz", title: "Finance Branding", type: "horizontal" },
   { id: "Brand_style_b7ikmi", title: "Brand Style", type: "vertical" },
+  { id: "DESIGN_yd8d1v", title: "Design", type: "horizontal" },
+  { id: "Collage_Animation_Explainer_i5hwct", title: "Collage Animation Explainer", type: "horizontal" },
+  { id: "Complete_Branding_ticvgq", title: "Complete Branding", type: "horizontal" },
 ];
 
 export function Portfolio() {
