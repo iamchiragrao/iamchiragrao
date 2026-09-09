@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Marquee } from "@/components/Marquee";
 import { Portfolio } from "@/components/Portfolio";
 import { ContentRepurposing } from "@/components/ContentRepurposing";
+import { OutroCTA } from "@/components/OutroCTA";
 
 export default function Home() {
   return (
@@ -27,6 +28,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* Outro Call to Action */}
+      <OutroCTA />
 
       {/* Footer */}
       <footer id="contact" className="mt-auto py-12 sm:py-16 md:py-20 border-t border-foreground/5 bg-foreground/2">
