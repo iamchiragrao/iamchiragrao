@@ -1,7 +1,6 @@
 import { Header } from "@/components/Header";
 import { Marquee } from "@/components/Marquee";
 import { Portfolio } from "@/components/Portfolio";
-import { IndianPortfolio } from "@/components/IndianPortfolio";
 import { ContentRepurposing } from "@/components/ContentRepurposing";
 
 export default function Home() {
@@ -11,7 +10,6 @@ export default function Home() {
         <Header />
         <Marquee />
         <Portfolio />
-        <IndianPortfolio />
         <ContentRepurposing />
       
       {/* Services Preview Section */}
