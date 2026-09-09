@@ -40,17 +40,12 @@ export function OutroCTA() {
           </div>
 
           {/* Heading */}
-          <h2 className="heading text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 sm:mb-6 text-white leading-tight">
+          <h2 className="heading text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-8 sm:mb-10 text-white leading-tight">
             Book an intro call <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-accent-light">
               to work with us
             </span>
           </h2>
-
-          {/* Subheading */}
-          <p className="text-white/60 text-sm sm:text-base md:text-lg mb-8 sm:mb-10 font-medium max-w-lg">
-            We might have a waitlist.
-          </p>
 
           {/* Call to Action Button */}
           <a
