@@ -6,6 +6,7 @@ import { ChevronDown, Menu, X, Video } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
 
+
 const services = [
   { name: "Long-Form Video", href: "#portfolio" },
   { name: "Short-Form / Reels", href: "#portfolio" },
@@ -15,6 +16,7 @@ const services = [
 export function Header() {
   const [isServicesOpen, setIsServicesOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
   const progressRef = React.useRef<HTMLDivElement>(null);
   const rafId = React.useRef<number>(0);
 
@@ -29,6 +31,7 @@ export function Header() {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       targetWidth = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrolled(scrollTop > 20);
     };
 
     const animate = () => {
@@ -56,7 +59,7 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none">
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none ${scrolled ? 'md:bg-transparent bg-background/80 backdrop-blur-lg' : ''}`}>
         {/* Scroll Progress Bar — uses scaleX transform for GPU-accelerated smoothness */}
         <div className="w-full h-[3px] bg-transparent pointer-events-none">
           <div
@@ -72,10 +75,10 @@ export function Header() {
         </div>
 
         {/* Header Content */}
-        <div className="pt-6 px-8 md:px-12 flex justify-center items-center relative">
+        <div className="pt-4 pb-2 px-4 sm:px-8 md:px-12 md:pt-6 md:pb-0 flex justify-between md:justify-center items-center relative">
           {/* Logo removed as requested */}
 
-          <nav className="hidden md:flex gap-6 items-center bg-foreground/5 backdrop-blur-md px-6 py-2.5 rounded-full shadow-lg border border-foreground/10 transition-all duration-500 pointer-events-auto">
+          <nav className="hidden md:flex gap-6 items-center bg-white/80 backdrop-blur-md px-6 py-2.5 rounded-full shadow-md border border-foreground/10 transition-all duration-500 pointer-events-auto">
             <div 
               className="relative group"
               onMouseEnter={() => setIsServicesOpen(true)}
@@ -115,18 +118,19 @@ export function Header() {
             <Link href="#contact" className="text-sm font-medium hover:text-accent transition-colors">Contact</Link>
           </nav>
 
-          <div className="absolute right-8 md:right-12 flex items-center gap-4 pointer-events-auto">
+          <div className="flex md:absolute md:right-12 items-center gap-3 sm:gap-4 pointer-events-auto">
             <Link 
               href="#contact" 
-              className="hidden sm:block bg-accent text-white px-6 py-2.5 rounded-full text-sm font-bold hover:scale-105 transition-transform"
+              className="hidden sm:block bg-accent text-white px-5 py-2 md:px-6 md:py-2.5 rounded-full text-sm font-bold hover:bg-accent-hover hover:scale-105 transition-all shadow-md shadow-accent/20"
             >
-              Hire Me
+              Book a Call
             </Link>
             <button 
-              className="md:hidden p-2"
+              className="md:hidden p-2 -mr-2 text-foreground"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X /> : <Menu />}
+              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
@@ -139,7 +143,7 @@ export function Header() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="fixed inset-x-0 top-24 z-40 md:hidden bg-background/95 backdrop-blur-lg border-b border-foreground/10 overflow-hidden"
+            className="fixed inset-x-0 top-[52px] z-40 md:hidden bg-background/95 backdrop-blur-lg border-b border-foreground/10 overflow-hidden shadow-xl"
           >
             <div className="px-6 py-6 space-y-4">
               <div className="space-y-2">
@@ -160,10 +164,10 @@ export function Header() {
               <Link href="#contact" className="block px-2 py-2 text-lg font-medium" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
               <Link 
                 href="#contact" 
-                className="block w-full text-center bg-accent text-white px-6 py-4 rounded-xl text-lg font-bold"
+                className="block w-full text-center bg-accent text-white px-6 py-4 rounded-xl text-lg font-bold shadow-lg shadow-accent/20"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Hire Me
+                Book a Call
               </Link>
             </div>
           </motion.div>

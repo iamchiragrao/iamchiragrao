@@ -58,13 +58,13 @@ export function FloatingIcons() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 pointer-events-none z-[1] overflow-hidden"
+      className="fixed inset-0 pointer-events-none z-[1] overflow-hidden hidden md:block"
       aria-hidden="true"
     >
       {ICONS.map((icon, i) => (
         <div
           key={i}
-          className="absolute text-accent/[0.07] will-change-transform"
+          className="absolute text-accent/15 will-change-transform"
           style={{
             left: `${icon.x}%`,
             top: `${icon.y}%`,

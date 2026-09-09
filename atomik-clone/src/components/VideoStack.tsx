@@ -24,7 +24,7 @@ export function VideoStack({ videos }: VideoStackProps) {
   }, [videos.length]);
 
   return (
-    <div className="relative h-[600px] w-full flex items-center justify-center overflow-hidden perspective-[1200px]">
+    <div className="relative h-[420px] sm:h-[520px] w-full flex items-center justify-center overflow-hidden perspective-[1200px]">
       <AnimatePresence mode="popLayout">
         {videos.map((v, i) => {
           // Calculate relative position to current index
@@ -41,15 +41,15 @@ export function VideoStack({ videos }: VideoStackProps) {
           const isCurrent = offset === 0;
           
           // Stacking calculations
-          const xOffset = offset * 60; // Spread them horizontally
+          const xOffset = offset * 50; // Spread them horizontally
           const zOffset = Math.abs(offset) * -100; // Push non-current items back
-          const rotateY = offset * -25; // Tilt them towards the center (like Samsung Task Changer)
+          const rotateY = offset * -25; // Tilt them towards the center
           const scale = isCurrent ? 1 : 0.85;
 
           return (
             <motion.div
               key={v.id}
-              className="absolute top-1/2 left-1/2 rounded-3xl overflow-hidden shadow-2xl bg-black w-[260px] h-[460px] cursor-pointer border border-white/10"
+              className="absolute top-1/2 left-1/2 rounded-3xl overflow-hidden shadow-2xl bg-black w-[200px] h-[360px] sm:w-[260px] sm:h-[460px] cursor-pointer border border-white/10"
               initial={{ opacity: 0, x: "-50%", y: "-50%", scale: 0.5 }}
               animate={{ 
                 opacity: Math.abs(offset) > 1 ? 0.3 : 1,

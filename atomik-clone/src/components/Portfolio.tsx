@@ -28,7 +28,7 @@ export function Portfolio() {
   return (
     <section
       id="portfolio"
-      className="py-32 relative overflow-hidden"
+      className="py-16 sm:py-24 md:py-32 relative overflow-hidden"
       style={{
         background: `
           radial-gradient(ellipse 80% 60% at 50% 50%, rgba(108,59,170,0.14) 0%, rgba(108,59,170,0.05) 40%, transparent 70%),
@@ -38,12 +38,12 @@ export function Portfolio() {
     >
       {/* Section header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <p className="text-xs font-mono uppercase tracking-[0.3em] mb-4 text-accent font-bold">Portfolio</p>
-          <h2 className="heading text-5xl md:text-7xl font-bold mb-6">
+        <div className="text-center mb-10 sm:mb-16">
+          <p className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.3em] mb-3 sm:mb-4 text-accent font-bold">Portfolio</p>
+          <h2 className="heading text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6">
             Selected <span className="text-accent italic">Works</span>
           </h2>
-          <p className="text-foreground/50 text-lg max-w-2xl mx-auto">
+          <p className="text-foreground/50 text-sm sm:text-lg max-w-2xl mx-auto px-4">
             A showcase of high-impact visual stories. Tap any to preview.
           </p>
         </div>
@@ -69,9 +69,9 @@ export function Portfolio() {
       >
         {/* Edge fade gradients */}
         <div className="absolute left-0 top-0 bottom-0 w-32 z-20 pointer-events-none"
-          style={{ background: "linear-gradient(to right, #000000 0%, transparent 100%)" }} />
+          style={{ background: "linear-gradient(to right, #ffffff 0%, transparent 100%)" }} />
         <div className="absolute right-0 top-0 bottom-0 w-32 z-20 pointer-events-none"
-          style={{ background: "linear-gradient(to left, #000000 0%, transparent 100%)" }} />
+          style={{ background: "linear-gradient(to left, #ffffff 0%, transparent 100%)" }} />
 
         {/* Carousel track */}
         <div

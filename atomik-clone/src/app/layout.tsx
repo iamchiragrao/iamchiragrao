@@ -41,7 +41,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans">
-        <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem={false}>
           <CursorFollower />
           <FloatingIcons />
           {children}

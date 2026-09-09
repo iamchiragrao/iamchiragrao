@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #fafaf8;
+  --background: #ffffff;
+  --foreground: #0c0c0e;
   --accent: #6c3baa;
   --accent-hover: #5a2f91;
   --accent-light: #8b5cc6;
   --secondary: #f0845a;
-  --ink-muted: #6b6b6b;
-  --surface-1: #0a0a0a;
-  --surface-2: #111111;
-  --border-token: rgba(255, 255, 255, 0.08);
+  --ink-muted: #555555;
+  --surface-1: #f8f8fc;
+  --surface-2: #f0f0f6;
+  --border-token: rgba(0, 0, 0, 0.08);
 }
 
 [data-theme='dark'] {
-  --background: #000000;
-  --foreground: #fafaf8;
+  --background: #ffffff;
+  --foreground: #0c0c0e;
   --accent: #6c3baa;
   --accent-hover: #5a2f91;
   --accent-light: #8b5cc6;
   --secondary: #f0845a;
-  --ink-muted: #6b6b6b;
-  --surface-1: #0a0a0a;
-  --surface-2: #111111;
-  --border-token: rgba(255, 255, 255, 0.08);
+  --ink-muted: #555555;
+  --surface-1: #f8f8fc;
+  --surface-2: #f0f0f6;
+  --border-token: rgba(0, 0, 0, 0.08);
 }
 
 @theme {
@@ -45,7 +45,13 @@
 html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  font-size: 14px; /* Scaled down base font size */
+  font-size: 14px;
+}
+
+@media (min-width: 640px) {
+  html {
+    font-size: 14px;
+  }
 }
 
 body {
@@ -54,6 +60,17 @@ body {
   font-family: var(--font-inter);
   cursor: none;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Restore default cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  a, button, input, textarea, select, [role="button"] {
+    cursor: auto;
+  }
 }
 
 /* Centered royal purple radial glow */
@@ -146,6 +163,20 @@ a, button, input, textarea, select, [role="button"] {
   animation-play-state: paused;
 }
 
+/* Content Repurposing reverse carousel — scrolls opposite to portfolio */
+@keyframes repurposing-slide {
+  0% { transform: translateX(-33.33%); }
+  100% { transform: translateX(0); }
+}
+
+.repurposing-carousel {
+  animation: repurposing-slide 30s linear infinite;
+}
+
+.repurposing-carousel.paused {
+  animation-play-state: paused;
+}
+
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -155,18 +186,4 @@ a, button, input, textarea, select, [role="button"] {
   animation: marquee 30s linear infinite;
 }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 
-.animate-spin-slow {
-  animation: spin-slow 10s linear infinite;
-}
-
-/* GPU-accelerated video for smooth scroll-driven scrubbing */
-.scrolly-video {
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
