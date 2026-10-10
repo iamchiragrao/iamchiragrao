@@ -113,13 +113,17 @@ def main():
     filename = clean_filename(filepath)
     size_mb = os.path.getsize(filepath) / (1024 * 1024)
     print(f"\nSelected: {filename} ({size_mb:.1f} MB)")
-    print("Choose Destination Engine:")
-    print("  [1] ⚡ Edge CDN (Auto-compresses <20MB for fast website streaming)")
-    print("  [2] 📦 Release Vault (Uploads raw uncompressed up to 2GB)")
-    choice = input("Enter choice (1 or 2, default 1): ").strip() or "1"
+    print("Choose Destination Engine Policy:")
+    print("  [1] ⚡ Edge CDN (Strictly Small <20MB — auto-compresses for website)")
+    print("  [2] 📦 Release Vault (Both Small & Large — uploads raw file up to 2GB)")
+    print("  [3] 🚀 Dual-Sync (Uploads raw to Vault AND compresses for Edge CDN)")
+    choice = input("Enter choice (1, 2, or 3, default 1): ").strip() or "1"
     
     if choice == "2":
         upload_to_vault(filepath, filename)
+    elif choice == "3":
+        upload_to_vault(filepath, filename)
+        optimize_and_push_edge(filepath, filename)
     else:
         optimize_and_push_edge(filepath, filename)
 
