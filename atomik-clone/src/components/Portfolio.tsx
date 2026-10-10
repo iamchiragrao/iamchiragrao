@@ -2,24 +2,20 @@
 
 import { useState, useRef } from "react";
 import { VideoStack } from "./VideoStack";
+import portfolioConfig from "@/data/portfolio-assets.json";
 
 const CDN_BASE = "https://cdn.jsdelivr.net/gh/iamchiragrao/my-assets@main/assets";
 
-const videos = [
-  { id: "horizontals", title: "The Clip Agency", type: "horizontal", file: "horizontals.mp4" },
-  { id: "collage_design", title: "Collage Design", type: "vertical", file: "collage_design.mp4" },
-  { id: "info_typo_branding", title: "Info Typo Branding", type: "vertical", file: "info_typo_branding.mp4" },
-  { id: "concept_explainer", title: "Concept Explainer", type: "vertical", file: "concept_explainer.mp4" },
-  { id: "edit_timeline", title: "Edit Timeline", type: "vertical", file: "edit_timeline.mp4" },
-  { id: "personal_experiment", title: "Personal Experiment", type: "horizontal", file: "personal_experiment.mp4" },
-  { id: "finance_branding", title: "Finance Branding", type: "vertical", file: "finance_branding.mp4" },
-  { id: "brand_style", title: "Brand Style", type: "vertical", file: "brand_style.mp4" },
-  { id: "animation_based", title: "Animation & Design", type: "vertical", file: "animation_based.mp4" },
-  { id: "collage_animation_explainer", title: "Collage Animation Explainer", type: "vertical", file: "collage_animation_explainer.mp4" },
-  { id: "complete_branding", title: "Complete Branding", type: "vertical", file: "complete_branding.mp4" },
-  { id: "finance_info", title: "Finance & Info", type: "vertical", file: "finance_info.mp4" },
-  { id: "collage_and_brand_edit", title: "Brand Storytelling", type: "vertical", file: "collage_and_brand_edit.mp4" },
-];
+function getVideoSrc(item: { file?: string; url?: string }) {
+  if (item.url && item.url.trim()) return item.url.trim();
+  if (item.file && item.file.trim()) {
+    if (item.file.startsWith("http")) return item.file;
+    return `${CDN_BASE}/${item.file}`;
+  }
+  return "";
+}
+
+const videos = portfolioConfig.portfolio;
 
 export function Portfolio() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -106,15 +102,28 @@ export function Portfolio() {
                   }}
                 />
 
-                <video
-                  src={`${CDN_BASE}/${v.file}`}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="relative z-[1] w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                {getVideoSrc(v) ? (
+                  <video
+                    src={getVideoSrc(v)}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="relative z-[1] w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="relative z-[1] w-full h-full flex flex-col items-center justify-center p-6 text-center bg-black/70 border border-dashed border-purple-500/25">
+                    <div className="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-2">
+                      <svg className="w-5 h-5 opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="23 7 16 12 23 17 23 7"/>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                      </svg>
+                    </div>
+                    <span className="text-[11px] font-mono text-purple-300 font-semibold mb-1">Unlinked Slot</span>
+                    <span className="text-[10px] text-zinc-500 font-mono">Link via my-assets</span>
+                  </div>
+                )}
 
                 {/* Bottom gradient overlay */}
                 <div

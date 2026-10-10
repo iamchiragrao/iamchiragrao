@@ -10,6 +10,7 @@ interface Video {
   title: string;
   type: string;
   file?: string;
+  url?: string;
 }
 
 interface VideoStackProps {
@@ -66,15 +67,27 @@ export function VideoStack({ videos }: VideoStackProps) {
               transition={{ duration: 0.6, ease: "easeInOut" }}
               onClick={() => setCurrentIndex(i)}
             >
-              <video
-                src={`${CDN_BASE}/${v.file || v.id + '.mp4'}`}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                className="w-full h-full object-cover rounded-3xl"
-              />
+              {(v.url || v.file) ? (
+                <video
+                  src={v.url || (v.file?.startsWith("http") ? v.file : `${CDN_BASE}/${v.file}`)}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover rounded-3xl"
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-zinc-950 border border-dashed border-purple-500/25 rounded-3xl">
+                  <div className="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-2">
+                    <svg className="w-5 h-5 opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="23 7 16 12 23 17 23 7"/>
+                      <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                    </svg>
+                  </div>
+                  <span className="text-[11px] font-mono text-purple-300 font-semibold mb-1">Unlinked Slot</span>
+                </div>
+              )}
               {isCurrent && (
                 <motion.div 
                   initial={{ opacity: 0 }}

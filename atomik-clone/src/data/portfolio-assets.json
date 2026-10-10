@@ -1,0 +1,133 @@
+{
+  "portfolio": [
+    {
+      "id": "slot-clip-agency",
+      "title": "The Clip Agency",
+      "type": "horizontal",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-collage-design",
+      "title": "Collage Design",
+      "type": "vertical",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-info-typo",
+      "title": "Info Typo Branding",
+      "type": "vertical",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-concept-explainer",
+      "title": "Concept Explainer",
+      "type": "vertical",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-edit-timeline",
+      "title": "Edit Timeline",
+      "type": "vertical",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-personal-experiment",
+      "title": "Personal Experiment",
+      "type": "horizontal",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-finance-branding",
+      "title": "Finance Branding",
+      "type": "vertical",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-brand-style",
+      "title": "Brand Style",
+      "type": "vertical",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-animation-design",
+      "title": "Animation & Design",
+      "type": "vertical",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-collage-animation",
+      "title": "Collage Animation Explainer",
+      "type": "vertical",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-complete-branding",
+      "title": "Complete Branding",
+      "type": "vertical",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-finance-info",
+      "title": "Finance & Info",
+      "type": "vertical",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "slot-brand-storytelling",
+      "title": "Brand Storytelling",
+      "type": "vertical",
+      "file": "",
+      "url": ""
+    }
+  ],
+  "repurposing": [
+    {
+      "id": "repurpose-intro-hook",
+      "title": "Intro Hook",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "repurpose-horizontal-1",
+      "title": "Horizontal Edit",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "repurpose-timeline-edit",
+      "title": "Timeline Edit",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "repurpose-brand-style",
+      "title": "Brand Style",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "repurpose-personal-experiment",
+      "title": "Personal Experiment",
+      "file": "",
+      "url": ""
+    },
+    {
+      "id": "repurpose-finance-branding",
+      "title": "Finance & Branding",
+      "file": "",
+      "url": ""
+    }
+  ]
+}

@@ -1,41 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import portfolioConfig from "@/data/portfolio-assets.json";
 
 const CDN_BASE = "https://cdn.jsdelivr.net/gh/iamchiragrao/my-assets@main/assets";
 
-const repurposingVideos = [
-  {
-    id: "intro-hook",
-    title: "Intro Hook",
-    src: `${CDN_BASE}/concept_explainer.mp4`,
-  },
-  {
-    id: "horizontal-1",
-    title: "Horizontal Edit",
-    src: `${CDN_BASE}/horizontals.mp4`,
-  },
-  {
-    id: "strong-clip",
-    title: "Timeline Edit",
-    src: `${CDN_BASE}/edit_timeline.mp4`,
-  },
-  {
-    id: "ig-video",
-    title: "Brand Style",
-    src: `${CDN_BASE}/brand_style.mp4`,
-  },
-  {
-    id: "horizontal-3",
-    title: "Personal Experiment",
-    src: `${CDN_BASE}/personal_experiment.mp4`,
-  },
-  {
-    id: "strong-clip-h",
-    title: "Finance & Branding",
-    src: `${CDN_BASE}/finance_branding.mp4`,
-  },
-];
+function getRepurposeSrc(item: { file?: string; url?: string }) {
+  if (item.url && item.url.trim()) return item.url.trim();
+  if (item.file && item.file.trim()) {
+    if (item.file.startsWith("http")) return item.file;
+    return `${CDN_BASE}/${item.file}`;
+  }
+  return "";
+}
+
+const repurposingVideos = portfolioConfig.repurposing;
 
 export function ContentRepurposing() {
   const [isPaused, setIsPaused] = useState(false);
@@ -111,14 +90,22 @@ export function ContentRepurposing() {
                 }}
               />
 
-              <video
-                src={v.src}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="relative z-[1] w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+              {getRepurposeSrc(v) ? (
+                <video
+                  src={getRepurposeSrc(v)}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="relative z-[1] w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              ) : (
+                <div className="relative z-[1] w-full h-full flex flex-col items-center justify-center p-4 text-center bg-black/70 border border-dashed border-purple-500/25">
+                  <span className="text-[11px] font-mono text-purple-300 font-semibold mb-1">Unlinked Slot</span>
+                  <span className="text-[10px] text-zinc-500 font-mono">Link via my-assets</span>
+                </div>
+              )}
 
               {/* Bottom gradient overlay */}
               <div
