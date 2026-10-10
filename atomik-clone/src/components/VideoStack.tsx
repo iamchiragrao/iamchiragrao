@@ -3,10 +3,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const CDN_BASE = "https://cdn.jsdelivr.net/gh/iamchiragrao/my-assets@main/assets";
+
 interface Video {
   id: string;
   title: string;
   type: string;
+  file?: string;
 }
 
 interface VideoStackProps {
@@ -64,11 +67,12 @@ export function VideoStack({ videos }: VideoStackProps) {
               onClick={() => setCurrentIndex(i)}
             >
               <video
-                src={`https://res.cloudinary.com/dwop0otlb/video/upload/q_auto,f_auto/${v.id}.mp4`}
+                src={`${CDN_BASE}/${v.file || v.id + '.mp4'}`}
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-3xl"
               />
               {isCurrent && (

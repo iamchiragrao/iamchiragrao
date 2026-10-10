@@ -3,18 +3,22 @@
 import { useState, useRef } from "react";
 import { VideoStack } from "./VideoStack";
 
+const CDN_BASE = "https://cdn.jsdelivr.net/gh/iamchiragrao/my-assets@main/assets";
+
 const videos = [
-  { id: "The_Clip_Agency_kc4vew", title: "The Clip Agency", type: "horizontal" },
-  { id: "collage_design_x8s6y2", title: "Collage Design", type: "horizontal" },
-  { id: "Info_Typo_Branding_v6qhat", title: "Info Typo Branding", type: "horizontal" },
-  { id: "Concept_Explainer_kfml9n", title: "Concept Explainer", type: "horizontal" },
-  { id: "Edit_timeline_tgc1a5", title: "Edit Timeline", type: "horizontal" },
-  { id: "Personal_Experiment_g0mwwu", title: "Personal Experiment", type: "vertical" },
-  { id: "Finance_Branding_vahalz", title: "Finance Branding", type: "horizontal" },
-  { id: "Brand_style_b7ikmi", title: "Brand Style", type: "vertical" },
-  { id: "DESIGN_yd8d1v", title: "Design", type: "horizontal" },
-  { id: "Collage_Animation_Explainer_i5hwct", title: "Collage Animation Explainer", type: "horizontal" },
-  { id: "Complete_Branding_ticvgq", title: "Complete Branding", type: "horizontal" },
+  { id: "horizontals", title: "The Clip Agency", type: "horizontal", file: "horizontals.mp4" },
+  { id: "collage_design", title: "Collage Design", type: "vertical", file: "collage_design.mp4" },
+  { id: "info_typo_branding", title: "Info Typo Branding", type: "vertical", file: "info_typo_branding.mp4" },
+  { id: "concept_explainer", title: "Concept Explainer", type: "vertical", file: "concept_explainer.mp4" },
+  { id: "edit_timeline", title: "Edit Timeline", type: "vertical", file: "edit_timeline.mp4" },
+  { id: "personal_experiment", title: "Personal Experiment", type: "horizontal", file: "personal_experiment.mp4" },
+  { id: "finance_branding", title: "Finance Branding", type: "vertical", file: "finance_branding.mp4" },
+  { id: "brand_style", title: "Brand Style", type: "vertical", file: "brand_style.mp4" },
+  { id: "animation_based", title: "Animation & Design", type: "vertical", file: "animation_based.mp4" },
+  { id: "collage_animation_explainer", title: "Collage Animation Explainer", type: "vertical", file: "collage_animation_explainer.mp4" },
+  { id: "complete_branding", title: "Complete Branding", type: "vertical", file: "complete_branding.mp4" },
+  { id: "finance_info", title: "Finance & Info", type: "vertical", file: "finance_info.mp4" },
+  { id: "collage_and_brand_edit", title: "Brand Storytelling", type: "vertical", file: "collage_and_brand_edit.mp4" },
 ];
 
 export function Portfolio() {
@@ -103,11 +107,12 @@ export function Portfolio() {
                 />
 
                 <video
-                  src={`https://res.cloudinary.com/dwop0otlb/video/upload/q_auto,f_auto/${v.id}.mp4`}
+                  src={`${CDN_BASE}/${v.file}`}
                   autoPlay
                   loop
                   muted
                   playsInline
+                  preload="metadata"
                   className="relative z-[1] w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
 

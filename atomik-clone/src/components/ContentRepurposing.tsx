@@ -2,36 +2,38 @@
 
 import { useState } from "react";
 
+const CDN_BASE = "https://cdn.jsdelivr.net/gh/iamchiragrao/my-assets@main/assets";
+
 const repurposingVideos = [
   {
     id: "intro-hook",
     title: "Intro Hook",
-    src: "https://res.cloudinary.com/dwop0otlb/video/upload/v1782915873/Intro_hook_h_yupfom.mp4",
+    src: `${CDN_BASE}/concept_explainer.mp4`,
   },
   {
     id: "horizontal-1",
     title: "Horizontal Edit",
-    src: "https://res.cloudinary.com/dwop0otlb/video/upload/v1782915900/Horizontal_xlufrd.mp4",
+    src: `${CDN_BASE}/horizontals.mp4`,
   },
   {
     id: "strong-clip",
-    title: "Strong Clip",
-    src: "https://res.cloudinary.com/dwop0otlb/video/upload/v1782915899/storng_clip_jk0yuy.mp4",
+    title: "Timeline Edit",
+    src: `${CDN_BASE}/edit_timeline.mp4`,
   },
   {
     id: "ig-video",
-    title: "IG Video",
-    src: "https://res.cloudinary.com/dwop0otlb/video/upload/v1782905309/ig_video_4_ozzkia.mp4",
+    title: "Brand Style",
+    src: `${CDN_BASE}/brand_style.mp4`,
   },
   {
     id: "horizontal-3",
-    title: "Horizontal 3",
-    src: "https://res.cloudinary.com/dwop0otlb/video/upload/v1782915934/horizontal_3_idc5uq.mp4",
+    title: "Personal Experiment",
+    src: `${CDN_BASE}/personal_experiment.mp4`,
   },
   {
     id: "strong-clip-h",
-    title: "Strong Clip H",
-    src: "https://res.cloudinary.com/dwop0otlb/video/upload/v1782915930/strong_clip_h_j24sau.mp4",
+    title: "Finance & Branding",
+    src: `${CDN_BASE}/finance_branding.mp4`,
   },
 ];
 
