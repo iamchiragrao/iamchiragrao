@@ -4,14 +4,14 @@
       "id": "slot-clip-agency",
       "title": "The Clip Agency",
       "type": "horizontal",
-      "file": "",
+      "file": "Horizontals.mp4",
       "url": ""
     },
     {
       "id": "slot-collage-design",
       "title": "Collage Design",
       "type": "vertical",
-      "file": "",
+      "file": "collage_design.mp4",
       "url": ""
     },
     {
@@ -25,70 +25,70 @@
       "id": "slot-concept-explainer",
       "title": "Concept Explainer",
       "type": "vertical",
-      "file": "",
+      "file": "Concept_Explainer.mp4",
       "url": ""
     },
     {
       "id": "slot-edit-timeline",
       "title": "Edit Timeline",
       "type": "vertical",
-      "file": "",
+      "file": "Edit_timeline.mp4",
       "url": ""
     },
     {
       "id": "slot-personal-experiment",
       "title": "Personal Experiment",
       "type": "horizontal",
-      "file": "",
+      "file": "Personal_Experiment.mp4",
       "url": ""
     },
     {
       "id": "slot-finance-branding",
       "title": "Finance Branding",
       "type": "vertical",
-      "file": "",
+      "file": "Finance_Branding.mp4",
       "url": ""
     },
     {
       "id": "slot-brand-style",
       "title": "Brand Style",
       "type": "vertical",
-      "file": "",
+      "file": "Brand_style.mp4",
       "url": ""
     },
     {
       "id": "slot-animation-design",
       "title": "Animation & Design",
       "type": "vertical",
-      "file": "",
+      "file": "Animation_Based.mp4",
       "url": ""
     },
     {
       "id": "slot-collage-animation",
       "title": "Collage Animation Explainer",
       "type": "vertical",
-      "file": "",
+      "file": "Collage_Animation_Explainer.mp4",
       "url": ""
     },
     {
       "id": "slot-complete-branding",
       "title": "Complete Branding",
       "type": "vertical",
-      "file": "",
+      "file": "Complete_Branding.mp4",
       "url": ""
     },
     {
       "id": "slot-finance-info",
       "title": "Finance & Info",
       "type": "vertical",
-      "file": "",
+      "file": "Finance_Info.mp4",
       "url": ""
     },
     {
       "id": "slot-brand-storytelling",
       "title": "Brand Storytelling",
       "type": "vertical",
-      "file": "",
+      "file": "collage_and_brand_edit.mp4",
       "url": ""
     }
   ],
@@ -96,37 +96,37 @@
     {
       "id": "repurpose-intro-hook",
       "title": "Intro Hook",
-      "file": "",
+      "file": "Info__Typo__Branding.mp4",
       "url": ""
     },
     {
       "id": "repurpose-horizontal-1",
       "title": "Horizontal Edit",
-      "file": "",
+      "file": "Horizontals.mp4",
       "url": ""
     },
     {
       "id": "repurpose-timeline-edit",
       "title": "Timeline Edit",
-      "file": "",
+      "file": "Edit_timeline.mp4",
       "url": ""
     },
     {
       "id": "repurpose-brand-style",
       "title": "Brand Style",
-      "file": "",
+      "file": "Brand_style.mp4",
       "url": ""
     },
     {
       "id": "repurpose-personal-experiment",
       "title": "Personal Experiment",
-      "file": "",
+      "file": "Personal_Experiment.mp4",
       "url": ""
     },
     {
       "id": "repurpose-finance-branding",
       "title": "Finance & Branding",
-      "file": "",
+      "file": "Finance_Branding.mp4",
       "url": ""
     }
   ]
